@@ -1,0 +1,38 @@
+#svg-container{
+position: relative;
+}
+svg{
+transform: rotateX(64deg) rotateZ(-34deg)
+}
+#lvl2{
+position: absolute;
+top: 30px;
+}
+#lvl1{
+position: absolute;
+top: 60px;
+}
+#lvl1 polygon{
+fill: rgb(1, 173, 210) !important
+}
+#lvl2 polygon{
+fill: rgb(232, 111, 24) !important
+}
+#lvl3 polygon{
+fill: rgb(218, 23, 56) !important
+}
+
+
+.svg-animation{
+  animation-duration: 3s;
+  animation-name: svg-animation;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+  animation-direction: forward;
+}
+
+@keyframes svg-animation {
+  from { transform: rotateX(64deg) rotateZ(-34deg) }
+  50% { transform: rotateX(130deg) rotateZ(34deg) }
+  to { transform: rotateX(64deg) rotateZ(-34deg) }
+}
