@@ -66,7 +66,8 @@ hr {
   vertical-align: bottom;
   float: none;
   width: 100%;
-}
+  background-color: white;
+  }
 
 .alert-info {
 background-color: #1c0c37  !important;
@@ -74,6 +75,7 @@ background-color: #1c0c37  !important;
 .content
 {
     border-right: 3px solid #1c0c37;
+    background-image: url("http://www.hep-education.com/wp-content/uploads/2016/03/pav%C3%A9s_gris-modifi%C3%A9.jpg")
 }
 
 .evenement {
