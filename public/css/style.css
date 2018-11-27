@@ -65,7 +65,7 @@ hr {
     display: inline-block;
   vertical-align: bottom;
   float: none;
-  width: 94%;
+  width: 100%;
 }
 
 .alert-info {
