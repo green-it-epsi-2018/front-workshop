@@ -69,9 +69,24 @@ hr {
 }
 
 .alert-info {
-background-color: #6D214F  !important;
+background-color: #1c0c37  !important;
 }
 .content
 {
-    border-right: 3px solid #6D214F;
+    border-right: 3px solid #1c0c37;
+}
+
+.evenement {
+    background: -webkit-linear-gradient(top,#efeef3 0,#cfccd9 100%);
+	background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
+}
+img
+{
+    max-width: 100% !important;
+    height: 100px;
+}
+.tblSlides
+{
+    width: 100%;
+    background-color: white;
 }
