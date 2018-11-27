@@ -1,0 +1,26 @@
+{
+  "name": "projet",
+  "version": "1.0.0",
+  "description": "Front du projet workshop",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/green-it-epsi-2018/front-workshop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/green-it-epsi-2018/front-workshop/issues"
+  },
+  "homepage": "https://github.com/green-it-epsi-2018/front-workshop#readme"
+}
