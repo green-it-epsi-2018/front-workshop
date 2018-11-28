@@ -32,6 +32,7 @@ fill: rgb(218, 23, 56) !important
 }
 
 #modal{
+  overflow-y: auto;
   position: absolute;
   bottom: 0;
   left: 0;

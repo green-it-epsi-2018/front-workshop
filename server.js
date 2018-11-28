@@ -3,6 +3,10 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const fs = require('fs')
+const axios = require('axios')
+
+const BACK_HOST = "http://localhost:3000"
+
 var date = new Date(2018, 11, 28, 8, 00, 00, 00);
 var objct = [{ 
   "DateDebut": new Date(2018, 10, 28, 10, 00, 00).getTime(),
@@ -68,6 +72,19 @@ var objct = [{
     "NumeroEtage": 3
   }]
 
+var events = []
+const getData = () => axios.get(`${BACK_HOST}/data/building`)
+  .then((response) =>{
+    events = response.data
+  })
+  .catch(() => {
+    events = []
+    console.log("Error, can't get data from webservice");
+  })
+
+getData()
+setInterval(getData, 2 * 3600 * 1000) // 2 Hours
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use('socket.io', express.static('node_modules/socket.io-client/dist'))
@@ -75,7 +92,11 @@ app.use('socket.io', express.static('node_modules/socket.io-client/dist'))
 const svg = fs.readdirSync('svg').map(file => fs.readFileSync('svg/'+file))
 
 app.get('/', function(req, res, next){
-  res.render('index', {svg, dataObject: objct})
+  if(events.length === 0){
+    return res.sendStatus(500)
+  }
+
+  return res.render('index', {svg, events})
 })
 
 io.on('connection', function(socket){

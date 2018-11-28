@@ -39,16 +39,16 @@ document.querySelectorAll('polygon[id^=room]').forEach(p => {
 })
 const controlPrec = () => {
   const currentState = _getCurrentTransitionState();
-  if(currentState > 1){
-    _changeTransitionState(currentState - 1)
-  }
-}
-const controlSuiv = () => {
-  const currentState = _getCurrentTransitionState();
   const maxState = document.querySelectorAll('svg').length
   if(currentState < maxState){
     _changeTransitionState(currentState + 1)
   }
+}
+const controlSuiv = () => {  const currentState = _getCurrentTransitionState();
+  if(currentState > 1){
+    _changeTransitionState(currentState - 1)
+  }
+
 }
 const controlAcceuil = () => {
   _changeTransitionState(0);
@@ -70,22 +70,32 @@ const getListAvailableRoomsID = (date = new Date()) => {
 
 const setModalContent = (idRoom) => {
   const numeroSalle = +idRoom.substring(5);
+  const Days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
+  const FreeSpan = (text) => `<span style='color: green;'>${text}</span>`
+  const UsedSpan = (text) => `<span style='color: grey; font-weight: bold;'>${text}</span>`
+
   for(var y = 0; y < (20 - 8); y++){
     for(var x = 0; x < 5; x++){
       let currDate = new Date()
       currDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate() - currDate.getDay() + 1 + x);
+
+      if(y === 0){
+        const lbl = modalDiv.querySelector(`tr:nth-child(1) td:nth-child(${2 + x})`)
+        lbl.innerHTML = `${Days[x]} ${currDate.getDate()}/${currDate.getMonth()}`;
+      }
+
       const firstMiddleDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), y + 8, 15, 00)
       const secondMiddleDate = new Date(firstMiddleDate.getTime() + (30 * 60000))
 
       const firstEvent = getEventOccupation(numeroSalle, firstMiddleDate);
       const secondEvent = getEventOccupation(numeroSalle, secondMiddleDate)
-      modalDiv.querySelector(`tr:nth-child(${(y + 1) * 2}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, firstMiddleDate) ? "Libre" : `${firstEvent.Promo} : ${firstEvent.Matiere}`
-      modalDiv.querySelector(`tr:nth-child(${((y + 1) * 2) + 1}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, secondMiddleDate) ? "Libre" : `${secondEvent.Promo} : ${secondEvent.Matiere}`
+      modalDiv.querySelector(`tr:nth-child(${(y + 1) * 2}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, firstMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${firstEvent.Promo} : ${firstEvent.Matiere}`)
+      modalDiv.querySelector(`tr:nth-child(${((y + 1) * 2) + 1}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, secondMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${secondEvent.Promo} : ${secondEvent.Matiere}`)
     }
   }
 }
 
 (() => {
   const listAvailable = getListAvailableRoomsID();
-  roomsIdList.forEach(id => document.getElementById(id).style.stroke = listAvailable.includes(id) ? "yellow" : "purple")
+  roomsIdList.forEach(id => document.getElementById(id).style.stroke = listAvailable.includes(id) ? "green" : "purple")
 })()

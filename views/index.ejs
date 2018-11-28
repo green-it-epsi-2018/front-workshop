@@ -19,9 +19,9 @@
       <!--Contenu de la carte-->
       <div class="col-lg-8 content">
          <div class="alert alert-info" role="alert">
-            <center>
+            <div class="text-center">
                <h3><strong id="dateId" class="date"></strong></h3>
-            </center>
+            </div>
          </div>
          <div id="svg-container" class="svg-actif-0">
             <% svg.forEach( curr_svg => { %>
@@ -53,7 +53,7 @@
             <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=fr&size=large&timezone=Europe%2FParis"
                width="100%" height="140" frameborder="0" seamless></iframe>
          </div>
-         <center>
+         <div class="text-center">
             <hr class="hr-primary">
             <hr class="hr-danger" />
             <hr class="hr-success" />
@@ -61,83 +61,79 @@
             <h1>
                <p style="color:#6D214F  !important;"><span class="glyphicon glyphicon-info-sign"></span> Informations </p>
             </h1>
-         </center>
+         </div>
          <hr class="hr-primary">
          <hr class="hr-danger" />
          <hr class="hr-success" />
          <hr class="hr-warning" />
-
          <div class="information">
-         <div id="slideshow">
-          <div class="alert alert-info" role="alert">
-         
-               <h3> <span class="glyphicon glyphicon-calendar"> CAMPUS HEP NANTES  </span></h3>
+            <div id="slideshow">
+               <div class="alert alert-info" role="alert">
+                  <h3> <span class="glyphicon glyphicon-calendar"> CAMPUS HEP NANTES  </span></h3>
                   <img src="img/campus.jpg">
                </div>
                <div class="alert alert-info" role="alert">
-               <h3> <span class="glyphicon glyphicon-calendar"> Le prochaine workshop sera le 04/02/2019 </span></h3>
+                  <h3> <span class="glyphicon glyphicon-calendar"> Le prochaine workshop sera le 04/02/2019 </span></h3>
                   <img src="img/wk.jpg">
                </div>
                <div class="alert alert-info" role="alert">
-                <h3><span class="glyphicon glyphicon-info-sign"> Il y a une réunion groupe dans la salle 200 à 10h</span> </h3>
-                   <img src="img/wk2.jpg">
+                  <h3><span class="glyphicon glyphicon-info-sign"> Il y a une réunion groupe dans la salle 200 à 10h</span> </h3>
+                  <img src="img/wk2.jpg">
                </div>
                <div class="alert alert-info" role="alert">
-               <span class="glyphicon glyphicon-info-sign">
-                    Un workshop est un mot anglais qui désigne un atelier axé sur un thème de travail au sein d'un congrès ou d'un salon professionnel. La présence du suffixe -shop induit en erreur et peut faire penser à un commerce. 
-               </span>
+                  <span class="glyphicon glyphicon-info-sign">
+                  Un workshop est un mot anglais qui désigne un atelier axé sur un thème de travail au sein d'un congrès ou d'un salon professionnel. La présence du suffixe -shop induit en erreur et peut faire penser à un commerce. 
+                  </span>
                </div>
+            </div>
          </div>
-      </div>
-
-        <div class="vbottom">
+         <div class="vbottom">
             <table class="tblSlides">
-                <tr>
-                    <td width="50%">
-                        <img src="img/CapushepNantes.PNG" class="campus">
-                    </td>
-                    <td align="right">
-                        <img class="mySlides" src="img/EPSI-Vignette.jpg">
-                        <img class="mySlides" src="img/wis.png">
-                        <img class="mySlides" src="img/idrac.jpg">
-                        <img class="mySlides" src="img/IFAG.jpg">
-                        <img class="mySlides" src="img/igefi.jpg">
-                        <img class="mySlides" src="img/sup.jpg">
-                    </td>
-                </tr>
+               <tr>
+                  <td width="50%">
+                     <img src="img/CapushepNantes.PNG" class="campus">
+                  </td>
+                  <td style="float: right;">
+                     <img class="mySlides" src="img/EPSI-Vignette.jpg">
+                     <img class="mySlides" src="img/wis.png">
+                     <img class="mySlides" src="img/idrac.jpg">
+                     <img class="mySlides" src="img/IFAG.jpg">
+                     <img class="mySlides" src="img/igefi.jpg">
+                     <img class="mySlides" src="img/sup.jpg">
+                  </td>
+               </tr>
             </table>
          </div>
       </div>
       <div id="modal" class="closed">
-      <table>
-      <tbody>
-      <tr>
-      <td>Time</td>
-      <td>Lundi</td>
-      <td>Mardi</td>
-      <td>Mercredi</td>
-      <td>Jeudi</td>
-      <td>Vendredi</td>
-      </tr>
-      <% Array(20 - 8).fill().map((_, i) => i + 8).forEach( (heure) => { %>
-      <%
-        const nextHeure = heure + 1 < 10 ? `0${heure + 1}` : "" + (heure + 1)
-        heure = heure < 10 ? `0${heure}` : "" + heure
-      %>
-      <tr>
-        <td><%= heure %>h00 - <%= heure %>h30</td>
-        <%- Array(5).fill().map(() => "<td></td>").join('') %>
-      </tr>
-      <tr>
-        <td><%= heure %>h30 - <%= nextHeure %>h00</td>
-        <%- Array(5).fill().map(() => "<td></td>").join('') %>
-      </tr>
-      <% }) %>
-      </tbody>
-      </table>
+         <table>
+            <tbody>
+               <tr>
+                  <td>Time</td>
+                  <td>Lundi</td>
+                  <td>Mardi</td>
+                  <td>Mercredi</td>
+                  <td>Jeudi</td>
+                  <td>Vendredi</td>
+               </tr>
+               <% Array(20 - 8).fill().map((_, i) => i + 8).forEach( (heure) => { %>
+               <%
+                  const nextHeure = heure + 1 < 10 ? `0${heure + 1}` : "" + (heure + 1)
+                  heure = heure < 10 ? `0${heure}` : "" + heure
+                  %>
+               <tr>
+                  <td><%= heure %>h00 - <%= heure %>h30</td>
+                  <%- Array(5).fill().map(() => "<td></td>").join('') %>
+               </tr>
+               <tr>
+                  <td><%= heure %>h30 - <%= nextHeure %>h00</td>
+                  <%- Array(5).fill().map(() => "<td></td>").join('') %>
+               </tr>
+               <% }) %>
+            </tbody>
+         </table>
       </div>
-      <script>const events = <%- JSON.stringify(dataObject) %></script>
-
+      <script>const events = <%- JSON.stringify(events) %></script>
       <!--Script and generated style-->
       <script src="/socket.io/socket.io.js"></script>
       <script src="js/app.js"></script>
@@ -145,23 +141,21 @@
       <style>
          <% svg.map((_, index) => index+1).forEach( svg_animation_index => { %>
          .svg-actif-0 #lvl<%= svg_animation_index %> {
-          animation-duration: 1.7s;
-          animation-fill-mode: forwards;
-          animation-name: svg-actif-0-<%= svg_animation_index %>;
-          animation-delay: <%= (svg.length - svg_animation_index - 1) * 0.2 %>s;
+         animation-duration: 1.7s;
+         animation-fill-mode: forwards;
+         animation-name: svg-actif-0-<%= svg_animation_index %>;
+         animation-delay: <%= (svg.length - svg_animation_index - 1) * 0.2 %>s;
          }
-
          @keyframes svg-actif-0-<%= svg_animation_index %> {
-          from {
-            top: 999px;
-            opacity: 0;
-          }
-          to {
-            top: <%= (svg.length - svg_animation_index) * 50 %>px;
-            opacity: 1;
-          }
+         from {
+         top: 999px;
+         opacity: 0;
          }
-
+         to {
+         top: <%= (svg.length - svg_animation_index) * 50 %>px;
+         opacity: 1;
+         }
+         }
          <% svg.map((_, index) => index+1).forEach( svg_div_index => { %>
          <%
             const isCurrentSelected = svg_animation_index == svg_div_index;
@@ -175,29 +169,28 @@
                 "50px"
             %>
          .<%= animationSelector %> {
-          animation-name: <%= animationName %>;
-          animation-duration: 1.7s;
-          animation-fill-mode: forwards;
+         animation-name: <%= animationName %>;
+         animation-duration: 1.7s;
+         animation-fill-mode: forwards;
          }
-
          @keyframes <%= animationName %> {
-          from {
-            top: <%= originalTop %>px;
-            opacity : 1;
-            transform: rotateX(55deg) rotateZ(-26deg);
-          }
-          35% {
-            opacity: <%= isCurrentSelected ? "1" : "0" %>;
-          }
-          99% {
-            display: initial;
-          }
-          to {
-            display: <%= isCurrentSelected ? "initial" : "none" %>;
-            top: <%= nextTop %> ;
-            opacity: <%= isCurrentSelected ? "1" : "0" %>;
-            transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg) translateX(35px);" : "rotateX(55deg) rotateZ(-26deg); translateX(80px)" %>;
-          }
+         from {
+         top: <%= originalTop %>px;
+         opacity : 1;
+         transform: rotateX(55deg) rotateZ(-26deg);
+         }
+         35% {
+         opacity: <%= isCurrentSelected ? "1" : "0" %>;
+         }
+         99% {
+         display: initial;
+         }
+         to {
+         display: <%= isCurrentSelected ? "initial" : "none" %>;
+         top: <%= nextTop %> ;
+         opacity: <%= isCurrentSelected ? "1" : "0" %>;
+         transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg) translateX(35px);" : "rotateX(55deg) rotateZ(-26deg); translateX(80px)" %>;
+         }
          }
          <% }) %>
          <% }) %>
