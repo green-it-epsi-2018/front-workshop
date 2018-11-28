@@ -12,7 +12,7 @@ const svg = fs.readdirSync('svg').map(file => fs.readFileSync('svg/'+file))
 
 app.get('/', function(req, res, next){
 
-  res.render('index', {svg, event})
+  res.render('index', {svg})
 })
 
 io.on('connection', function(socket){
