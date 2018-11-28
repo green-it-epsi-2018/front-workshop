@@ -18,6 +18,22 @@ document.addEventListener('click', (e) => {
   }
 })
 
+window.addEventListener('keydown', (event) => {
+  switch(event.key){
+    case "Escape":
+    if(modalDiv.getAttribute('class') === 'opened'){
+      modalDiv.setAttribute('class', 'closed')
+    }
+    break;
+    case "ArrowUp":
+    controlPrec();
+    break;
+    case "ArrowDown":
+    controlSuiv();
+    break;
+  }
+})
+
 document.querySelectorAll('polygon[id^=room]').forEach(p => {
 	var text = document.createElementNS("http://www.w3.org/2000/svg", 'text')
 	var center = [...p.points].reduce((acc, cur) => ({x: acc.x+(cur.x/p.points.length), y: acc.y+(cur.y/p.points.length)}), {x:0,y:0})
