@@ -68,6 +68,11 @@ hr {
   width: 100%;
   /*background-color: white;*/
   }
+  .vbottom p , .evenement p
+  {
+      font-weight: bold;
+      font-family: Impact, Charcoal, sans-serif;
+  }
 
 .alert-info {
 background-color: #1c0c37  !important;
