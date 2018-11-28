@@ -65,6 +65,11 @@
          <hr class="hr-danger" />
          <hr class="hr-success" />
          <hr class="hr-warning" />
+        <% dataObject.forEach(function(JSONelement){ %>
+          <h3> <%=JSON.stringify(JSONelement)%></h3>
+          <% }); %>
+         
+
         <div class="vbottom">
             <table class="tblSlides">
                 <tr>
