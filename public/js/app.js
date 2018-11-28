@@ -16,5 +16,17 @@ function carousel() {
     myIndex++;
     if (myIndex > x.length) {myIndex = 1}    
     x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 3000); // Change image every 3 seconds
-}
+    setTimeout(carousel, 6000); // Change image every 6 seconds
+};
+
+$("#slideshow > div:gt(0)").hide();
+
+setInterval(function() { 
+  $('#slideshow > div:first')
+    .fadeOut(2000)
+    .next()
+    .fadeIn(2000)
+    .end()
+    .appendTo('#slideshow');
+},  4000);
+

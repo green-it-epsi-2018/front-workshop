@@ -10,6 +10,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
    </head>
    <body>
       <!-- Corps de la page -->
@@ -58,23 +59,43 @@
             <hr class="hr-success" />
             <hr class="hr-warning" />
             <h1>
-               <p style="color:#6D214F  !important;">Liste des évènements</p>
+               <p style="color:#6D214F  !important;"><span class="glyphicon glyphicon-info-sign"></span> Informations </p>
             </h1>
          </center>
          <hr class="hr-primary">
          <hr class="hr-danger" />
          <hr class="hr-success" />
          <hr class="hr-warning" />
-        <% dataObject.forEach(function(JSONelement){ %>
-          <h3> <%=JSON.stringify(JSONelement)%></h3>
-          <% }); %>
          
+         <div class="information">
+         <div id="slideshow">
+          <div class="alert alert-info" role="alert">
+         
+               <h3> <span class="glyphicon glyphicon-calendar"> CAMPUS HEP NANTES  </span></h3>
+                  <img src="img/campus.jpg">
+               </div>
+               <div class="alert alert-info" role="alert">
+               <h3> <span class="glyphicon glyphicon-calendar"> Le prochaine workshop sera le 04/02/2019 </span></h3>
+                  <img src="img/wk.jpg">
+               </div>
+               <div class="alert alert-info" role="alert">
+                <h3><span class="glyphicon glyphicon-info-sign"> Il y a une réunion groupe dans la salle 200 à 10h</span> </h3>
+                   <img src="img/wk2.jpg">
+               </div>
+               <div class="alert alert-info" role="alert">
+               <span class="glyphicon glyphicon-info-sign">
+                    Un workshop est un mot anglais qui désigne un atelier axé sur un thème de travail au sein d'un congrès ou d'un salon professionnel. La présence du suffixe -shop induit en erreur et peut faire penser à un commerce. 
+               </span>
+               </div>
+         </div>
+      </div>
+      
 
         <div class="vbottom">
             <table class="tblSlides">
                 <tr>
                     <td width="50%">
-                        <img src="img/CapushepNantes.PNG">
+                        <img src="img/CapushepNantes.PNG" class="campus">
                     </td>
                     <td align="right">
                         <img class="mySlides" src="img/EPSI-Vignette.jpg">
