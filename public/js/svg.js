@@ -8,3 +8,9 @@ document.querySelectorAll('polygon[id^=room]').forEach(p => {
 	text.appendChild(document.createTextNode(p.id.substring(5)))
 	p.parentNode.appendChild(text)
 })
+
+document.querySelectorAll('svg').forEach(svg => {
+  svg.addEventListener('click', (e) => {
+    e.target.parentNode.setAttribute('class', 'svg-actif-' + e.target.id.substring(5))
+  })
+})

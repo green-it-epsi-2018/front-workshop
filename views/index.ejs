@@ -22,19 +22,27 @@
                <h3><strong id="dateId" class="date"></strong></h3>
             </center>
          </div>
-         <div id="svg-container" class="svg-animation">
+         <div id="svg-container" class="svg-actif-0">
 			<% svg.forEach( curr_svg => { %>
 				<%- curr_svg %>
 			<% }) %>
          </div>
-         <div class="vbottom">
-            <div class="alert alert-info">
-               <div id="dateMaj" class="date">Le dernier MAJ: </div>
+            <div class="vbottom">
+                <hr class="hr-primary">
+                <hr class="hr-danger" />
+                <hr class="hr-success" />
+                <hr class="hr-warning" />
+                <h1>
+                    <p style="color:#1c0c37  !important; padding: 1px;">La dernier mise a jour : </p>
+                </h1>
+                <hr class="hr-primary">
+                <hr class="hr-danger" />
+                <hr class="hr-success" />
+                <hr class="hr-warning" />
             </div>
-         </div>
       </div>
       <!--Contenu évènement-->
-      <div class="col-lg-4">
+      <div class="col-lg-4 evenement">
          <div style="text-align:center;padding:1em 0;">
             <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=fr&size=large&timezone=Europe%2FParis"
                width="100%" height="140" frameborder="0" seamless></iframe>
@@ -52,9 +60,67 @@
          <hr class="hr-danger" />
          <hr class="hr-success" />
          <hr class="hr-warning" />
+        <div class="vbottom">
+            <table class="tblSlides">
+                <tr>
+                    <td width="50%">
+                        <img src="img/CapushepNantes.PNG">
+                    </td>
+                    <td align="right">
+                        <img class="mySlides" src="img/EPSI-Vignette.jpg">
+                        <img class="mySlides" src="img/wis.png">
+                        <img class="mySlides" src="img/idrac.jpg">
+                        <img class="mySlides" src="img/IFAG.jpg">
+                        <img class="mySlides" src="img/igefi.jpg">
+                        <img class="mySlides" src="img/sup.jpg">
+                    </td>
+                </tr>
+            </table>
+        </div>
       </div>
       <script src="/socket.io/socket.io.js"></script>
       <script src="js/app.js"></script>
       <script src="js/svg.js"></script>
+
+      <style>
+      <% svg.map((_, index) => index+1).forEach( svg_animation_index => { %>
+      .svg-actif-0 #lvl<%= svg_animation_index %> {
+        top: <%= (svg.length - svg_animation_index) * 30 %>px;
+      }
+
+      <% svg.map((_, index) => index+1).forEach( svg_div_index => { %>
+      <%
+      const animationSelector = "svg-actif-" + svg_animation_index + " #lvl" + svg_div_index;
+      const animationName = "svg-animation-" + svg_animation_index + "-" + svg_div_index;
+      const originalTop = (svg.length - svg_div_index) * 30;
+      const nextTop = svg_animation_index < svg_div_index ?
+        "999px":
+        svg_animation_index > svg_div_index ?
+          "-999px":
+          "0"
+      %>
+        .<%= animationSelector %> {
+            animation-name: <%= animationName %>;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes <%= animationName %> {
+          from {
+            top: <%= originalTop %>px;
+            opacity : 1;
+            transform: rotateX(55deg) rotateZ(-26deg);
+          }
+          35% {
+            opacity: <%= svg_animation_index == svg_div_index ? "1" : "0" %>;
+          }
+          to {
+            top: <%= nextTop %> ;
+            opacity: <%= svg_animation_index == svg_div_index ? "1" : "0" %>;
+            transform: <%= svg_animation_index == svg_div_index ? "rotateX(0deg) rotateZ(0deg);" : "rotateX(55deg) rotateZ(-26deg);" %>;
+          }
+        }
+      <% }) %>
+      <% }) %>
+      </style>
    </body>
 </html>
