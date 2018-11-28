@@ -24,27 +24,27 @@
          </div>
          <div id="svg-container" class="svg-actif-0">
             <% svg.forEach( curr_svg => { %>
-              <%- curr_svg %>
+            <%- curr_svg %>
             <% }) %>
          </div>
          <div id="controls">
-          <div onclick="controlPrec()">Précédent</div>
-          <div onclick="controlAcceuil()">Acceuil</div>
-          <div onclick="controlSuiv()">Suivant</div>
+            <div onclick="controlPrec()">Précédent</div>
+            <div onclick="controlAcceuil()">Acceuil</div>
+            <div onclick="controlSuiv()">Suivant</div>
          </div>
-            <div class="vbottom">
-                <hr class="hr-primary">
-                <hr class="hr-danger" />
-                <hr class="hr-success" />
-                <hr class="hr-warning" />
-                <h1>
-                    <p style="color:#1c0c37  !important; padding: 1px;">La dernier mise a jour : </p>
-                </h1>
-                <hr class="hr-primary">
-                <hr class="hr-danger" />
-                <hr class="hr-success" />
-                <hr class="hr-warning" />
-            </div>
+         <div class="vbottom">
+            <hr class="hr-primary">
+            <hr class="hr-danger" />
+            <hr class="hr-success" />
+            <hr class="hr-warning" />
+            <h1>
+               <p style="color:#1c0c37  !important; padding: 1px;">La dernier mise a jour : </p>
+            </h1>
+            <hr class="hr-primary">
+            <hr class="hr-danger" />
+            <hr class="hr-success" />
+            <hr class="hr-warning" />
+         </div>
       </div>
       <!--Contenu évènement-->
       <div class="col-lg-4 evenement">
@@ -65,71 +65,69 @@
          <hr class="hr-danger" />
          <hr class="hr-success" />
          <hr class="hr-warning" />
-        <% dataObject.forEach(function(JSONelement){ %>
-          <h3> <%=JSON.stringify(JSONelement)%></h3>
-          <% }); %>
-         
-
-        <div class="vbottom">
+         <% dataObject.forEach(function(JSONelement){ %>
+         <h3> <%=JSON.stringify(JSONelement)%></h3>
+         <% }); %>
+         <div class="vbottom">
             <table class="tblSlides">
-                <tr>
-                    <td width="50%">
-                        <img src="img/CapushepNantes.PNG">
-                    </td>
-                    <td align="right">
-                        <img class="mySlides" src="img/EPSI-Vignette.jpg">
-                        <img class="mySlides" src="img/wis.png">
-                        <img class="mySlides" src="img/idrac.jpg">
-                        <img class="mySlides" src="img/IFAG.jpg">
-                        <img class="mySlides" src="img/igefi.jpg">
-                        <img class="mySlides" src="img/sup.jpg">
-                    </td>
-                </tr>
+               <tr>
+                  <td width="50%">
+                     <img src="img/CapushepNantes.PNG">
+                  </td>
+                  <td align="right">
+                     <img class="mySlides" src="img/EPSI-Vignette.jpg">
+                     <img class="mySlides" src="img/wis.png">
+                     <img class="mySlides" src="img/idrac.jpg">
+                     <img class="mySlides" src="img/IFAG.jpg">
+                     <img class="mySlides" src="img/igefi.jpg">
+                     <img class="mySlides" src="img/sup.jpg">
+                  </td>
+               </tr>
             </table>
-        </div>
+         </div>
       </div>
       <script src="/socket.io/socket.io.js"></script>
       <script src="js/app.js"></script>
       <script src="js/svg.js"></script>
-
       <style>
-      <% svg.map((_, index) => index+1).forEach( svg_animation_index => { %>
-      .svg-actif-0 #lvl<%= svg_animation_index %> {
-        animation-duration: 1.7s;
-        animation-fill-mode: forwards;
-        animation-name: svg-actif-0-<%= svg_animation_index %>;
-        animation-delay: <%= (svg.length - svg_animation_index - 1) * 0.2 %>s;
-      }
+         <% svg.map((_, index) => index+1).forEach( svg_animation_index => { %>
+         .svg-actif-0 #lvl<%= svg_animation_index %> {
+          animation-duration: 1.7s;
+          animation-fill-mode: forwards;
+          animation-name: svg-actif-0-<%= svg_animation_index %>;
+          animation-delay: <%= (svg.length - svg_animation_index - 1) * 0.2 %>s;
+         }
 
-      @keyframes svg-actif-0-<%= svg_animation_index %> {
-        from {
-          top: 999px;
-          opacity: 0;
-        }
-        to {
-          top: <%= (svg.length - svg_animation_index) * 50 %>px;
-          opacity: 1;
-        }
-      }
+         @keyframes svg-actif-0-<%= svg_animation_index %> {
+          from {
+            top: 999px;
+            opacity: 0;
+          }
+          to {
+            top: <%= (svg.length - svg_animation_index) * 50 %>px;
+            opacity: 1;
+          }
+         }
 
-      <% svg.map((_, index) => index+1).forEach( svg_div_index => { %>
-      <%
-      const isCurrentSelected = svg_animation_index == svg_div_index;
-      const animationSelector = "svg-actif-" + svg_animation_index + " #lvl" + svg_div_index;
-      const animationName = "svg-animation-" + svg_animation_index + "-" + svg_div_index;
-      const originalTop = (svg.length - svg_div_index) * 30;
-      const nextTop = svg_animation_index < svg_div_index ?
-        "999px":
-        svg_animation_index > svg_div_index ?
-          "-999px":
-          "50px"
-      %>
-        .<%= animationSelector %> {
-            animation-name: <%= animationName %>;
-            animation-duration: 1.7s;
-            animation-fill-mode: forwards;
-        }
-        @keyframes <%= animationName %> {
+         <% svg.map((_, index) => index+1).forEach( svg_div_index => { %>
+         <%
+            const isCurrentSelected = svg_animation_index == svg_div_index;
+            const animationSelector = "svg-actif-" + svg_animation_index + " #lvl" + svg_div_index;
+            const animationName = "svg-animation-" + svg_animation_index + "-" + svg_div_index;
+            const originalTop = (svg.length - svg_div_index) * 30;
+            const nextTop = svg_animation_index < svg_div_index ?
+              "-999px":
+              svg_animation_index > svg_div_index ?
+                "999px":
+                "50px"
+            %>
+         .<%= animationSelector %> {
+          animation-name: <%= animationName %>;
+          animation-duration: 1.7s;
+          animation-fill-mode: forwards;
+         }
+
+         @keyframes <%= animationName %> {
           from {
             top: <%= originalTop %>px;
             opacity : 1;
@@ -147,9 +145,9 @@
             opacity: <%= isCurrentSelected ? "1" : "0" %>;
             transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg) translateX(35px);" : "rotateX(55deg) rotateZ(-26deg); translateX(80px)" %>;
           }
-        }
-      <% }) %>
-      <% }) %>
+         }
+         <% }) %>
+         <% }) %>
       </style>
    </body>
 </html>
