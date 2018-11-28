@@ -4,6 +4,7 @@ position: relative;
 svg{
 transform: rotateX(55deg) rotateZ(-26deg) translateX(80px);
 position: absolute;
+stroke-width: 3px;
 }
 
 #lvl1 polygon{

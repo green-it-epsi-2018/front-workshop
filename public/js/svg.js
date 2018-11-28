@@ -54,6 +54,20 @@ const controlAcceuil = () => {
   _changeTransitionState(0);
 }
 
+const isRoomAvailable = (roomNumber, date) => {
+  const currentTimestamp = date.getTime();
+  return !events.some((event) => event.NumeroSalle === roomNumber && event.DateDebut < currentTimestamp && event.DateFin > currentTimestamp);
+}
+
+const getEventOccupation = (roomNumber, date) => {
+  const currentTimestamp = date.getTime();
+  return events.find((event) => event.NumeroSalle === roomNumber && event.DateDebut < currentTimestamp && event.DateFin > currentTimestamp);
+}
+
+const getListAvailableRoomsID = (date = new Date()) => {
+  return roomsIdList.filter((roomId) => isRoomAvailable(+roomId.substring(5), date));
+}
+
 const setModalContent = (idRoom) => {
   const numeroSalle = +idRoom.substring(5);
   for(var y = 0; y < (20 - 8); y++){
@@ -71,16 +85,7 @@ const setModalContent = (idRoom) => {
   }
 }
 
-const isRoomAvailable = (roomNumber, date) => {
-  const currentTimestamp = date.getTime();
-  return !events.some((event) => event.NumeroSalle === roomNumber && event.DateDebut < currentTimestamp && event.DateFin > currentTimestamp);
-}
-
-const getEventOccupation = (roomNumber, date) => {
-  const currentTimestamp = date.getTime();
-  return events.find((event) => event.NumeroSalle === roomNumber && event.DateDebut < currentTimestamp && event.DateFin > currentTimestamp);
-}
-
-const getListAvailableRooms = (date) => {
-  return roomsIdList.filter((roomId) => isRoomAvailable(+roomId.substring(5), date));
-}
+(() => {
+  const listAvailable = getListAvailableRoomsID();
+  roomsIdList.forEach(id => document.getElementById(id).style.stroke = listAvailable.includes(id) ? "yellow" : "purple")
+})()
