@@ -2,7 +2,7 @@
 position: relative;
 }
 svg{
-transform: rotateX(55deg) rotateZ(-26deg);
+transform: rotateX(55deg) rotateZ(-26deg) translateX(80px);
 position: absolute;
 }
 

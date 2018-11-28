@@ -95,7 +95,21 @@
       <style>
       <% svg.map((_, index) => index+1).forEach( svg_animation_index => { %>
       .svg-actif-0 #lvl<%= svg_animation_index %> {
-        top: <%= (svg.length - svg_animation_index) * 30 %>px;
+        animation-duration: 1.7s;
+        animation-fill-mode: forwards;
+        animation-name: svg-actif-0-<%= svg_animation_index %>;
+        animation-delay: <%= (svg.length - svg_animation_index - 1) * 0.2 %>s;
+      }
+
+      @keyframes svg-actif-0-<%= svg_animation_index %> {
+        from {
+          top: 999px;
+          opacity: 0;
+        }
+        to {
+          top: <%= (svg.length - svg_animation_index) * 30 %>px;
+          opacity: 1;
+        }
       }
 
       <% svg.map((_, index) => index+1).forEach( svg_div_index => { %>
@@ -108,11 +122,11 @@
         "999px":
         svg_animation_index > svg_div_index ?
           "-999px":
-          "0"
+          "50px"
       %>
         .<%= animationSelector %> {
             animation-name: <%= animationName %>;
-            animation-duration: 2s;
+            animation-duration: 1.7s;
             animation-fill-mode: forwards;
         }
         @keyframes <%= animationName %> {
@@ -128,10 +142,10 @@
             display: initial;
           }
           to {
-            display: <%= isCurrentSelected ? "initial" : "none" %>
+            display: <%= isCurrentSelected ? "initial" : "none" %>;
             top: <%= nextTop %> ;
             opacity: <%= isCurrentSelected ? "1" : "0" %>;
-            transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg);" : "rotateX(55deg) rotateZ(-26deg);" %>;
+            transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg) translateX(35px);" : "rotateX(55deg) rotateZ(-26deg); translateX(80px)" %>;
           }
         }
       <% }) %>
