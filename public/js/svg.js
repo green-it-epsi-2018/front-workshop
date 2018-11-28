@@ -9,8 +9,28 @@ document.querySelectorAll('polygon[id^=room]').forEach(p => {
 	p.parentNode.appendChild(text)
 })
 
-document.querySelectorAll('svg').forEach(svg => {
-  svg.addEventListener('click', (e) => {
-    e.target.parentNode.setAttribute('class', 'svg-actif-' + e.target.id.substring(5))
-  })
-})
+const svgContainer = document.getElementById('svg-container');
+
+const _changeTransitionState = (state) => {
+  svgContainer.setAttribute('class', `svg-actif-${state}`);
+}
+const _getCurrentTransitionState = () => {
+  return +svgContainer.getAttribute('class').substring(10);
+}
+
+const controlPrec = () => {
+  const currentState = _getCurrentTransitionState();
+  if(currentState > 1){
+    _changeTransitionState(currentState - 1)
+  }
+}
+const controlSuiv = () => {
+  const currentState = _getCurrentTransitionState();
+  const maxState = document.querySelectorAll('svg').length
+  if(currentState < maxState){
+    _changeTransitionState(currentState + 1)
+  }
+}
+const controlAcceuil = () => {
+  _changeTransitionState(0);
+}

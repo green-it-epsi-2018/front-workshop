@@ -11,7 +11,8 @@ app.use('socket.io', express.static('node_modules/socket.io-client/dist'))
 const svg = fs.readdirSync('svg').map(file => fs.readFileSync('svg/'+file))
 
 app.get('/', function(req, res, next){
-  res.render('index', {svg})
+
+  res.render('index', {svg, event})
 })
 
 io.on('connection', function(socket){

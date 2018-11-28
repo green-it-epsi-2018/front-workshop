@@ -23,9 +23,14 @@
             </center>
          </div>
          <div id="svg-container" class="svg-actif-0">
-			<% svg.forEach( curr_svg => { %>
-				<%- curr_svg %>
-			<% }) %>
+            <% svg.forEach( curr_svg => { %>
+              <%- curr_svg %>
+            <% }) %>
+         </div>
+         <div id="controls">
+          <div onclick="controlPrec()">Précédent</div>
+          <div onclick="controlAcceuil()">Acceuil</div>
+          <div onclick="controlSuiv()">Suivant</div>
          </div>
             <div class="vbottom">
                 <hr class="hr-primary">
@@ -90,6 +95,7 @@
 
       <% svg.map((_, index) => index+1).forEach( svg_div_index => { %>
       <%
+      const isCurrentSelected = svg_animation_index == svg_div_index;
       const animationSelector = "svg-actif-" + svg_animation_index + " #lvl" + svg_div_index;
       const animationName = "svg-animation-" + svg_animation_index + "-" + svg_div_index;
       const originalTop = (svg.length - svg_div_index) * 30;
@@ -111,12 +117,16 @@
             transform: rotateX(55deg) rotateZ(-26deg);
           }
           35% {
-            opacity: <%= svg_animation_index == svg_div_index ? "1" : "0" %>;
+            opacity: <%= isCurrentSelected ? "1" : "0" %>;
+          }
+          99% {
+            display: initial;
           }
           to {
+            display: <%= isCurrentSelected ? "initial" : "none" %>
             top: <%= nextTop %> ;
-            opacity: <%= svg_animation_index == svg_div_index ? "1" : "0" %>;
-            transform: <%= svg_animation_index == svg_div_index ? "rotateX(0deg) rotateZ(0deg);" : "rotateX(55deg) rotateZ(-26deg);" %>;
+            opacity: <%= isCurrentSelected ? "1" : "0" %>;
+            transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg);" : "rotateX(55deg) rotateZ(-26deg);" %>;
           }
         }
       <% }) %>

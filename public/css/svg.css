@@ -16,7 +16,14 @@ fill: rgb(232, 111, 24) !important
 fill: rgb(218, 23, 56) !important
 }
 
-svg:hover{
-  stroke: red;
-  stroke-width: 3px;
+#controls{
+  position: absolute;
+  top: 100px;
+  right: 5px;
+}
+#controls > div{
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+  border: black solid 1px;
 }
