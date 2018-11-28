@@ -38,7 +38,7 @@
             <hr class="hr-success" />
             <hr class="hr-warning" />
             <h1>
-               <p style="color:#1c0c37  !important; padding: 1px;">La dernier mise a jour : </p>
+               <p style="color:#1c0c37  !important; padding: 1px;">La dernière mise à jour : <%= new Date().toLocaleDateString() %></p>
             </h1>
             <hr class="hr-primary">
             <hr class="hr-danger" />
@@ -65,9 +65,6 @@
          <hr class="hr-danger" />
          <hr class="hr-success" />
          <hr class="hr-warning" />
-         <% dataObject.forEach(function(JSONelement){ %>
-         <h3> <%=JSON.stringify(JSONelement)%></h3>
-         <% }); %>
          <div class="vbottom">
             <table class="tblSlides">
                <tr>
@@ -87,8 +84,35 @@
          </div>
       </div>
       <div id="modal" class="closed">
-        MODAL CONTENT
+      <table>
+      <tbody>
+      <tr>
+      <td>Time</td>
+      <td>Lundi</td>
+      <td>Mardi</td>
+      <td>Mercredi</td>
+      <td>Jeudi</td>
+      <td>Vendredi</td>
+      </tr>
+      <% Array(20 - 8).fill().map((_, i) => i + 8).forEach( (heure) => { %>
+      <%
+        const nextHeure = heure + 1 < 10 ? `0${heure + 1}` : "" + (heure + 1)
+        heure = heure < 10 ? `0${heure}` : "" + heure
+      %>
+      <tr>
+        <td><%= heure %>h00 - <%= heure %>h30</td>
+        <%- Array(5).fill().map(() => "<td></td>").join('') %>
+      </tr>
+      <tr>
+        <td><%= heure %>h30 - <%= nextHeure %>h00</td>
+        <%- Array(5).fill().map(() => "<td></td>").join('') %>
+      </tr>
+      <% }) %>
+      </tbody>
+      </table>
       </div>
+      <script>const events = <%- JSON.stringify(dataObject) %></script>
+
       <!--Script and generated style-->
       <script src="/socket.io/socket.io.js"></script>
       <script src="js/app.js"></script>
