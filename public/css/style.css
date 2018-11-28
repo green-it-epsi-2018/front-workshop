@@ -103,19 +103,3 @@ background-color: #1c0c37  !important;
     width: 100%;
     background-color: white;
 }
-#slideshow 
-{ 
-    position: relative; 
-    width: 100%;
-}
-
-#slideshow > div 
-{ 
-    position: absolute; 
-}
-#slideshow  img
-{
-    max-width: 100% !important;
-}
-
- 

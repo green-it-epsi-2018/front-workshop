@@ -20,10 +20,63 @@ fill: rgb(218, 23, 56) !important
   position: absolute;
   top: 100px;
   right: 5px;
+  width: 30px;
+  height: 30px;
 }
 #controls > div{
   cursor: pointer;
   text-align: center;
   padding: 5px;
   border: black solid 1px;
+}
+
+#modal{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% * (2/3));
+  background-color: #1c0c37;
+  color: white;
+  text-align: center;
+}
+#modal > table{
+  width: 100%;
+  height: 100%;
+}
+#modal > table td{
+  width: calc(100% /  6);
+}
+
+#modal.closed{
+  height: 0px;
+}
+
+#modal.opened{
+  animation-name: modal-open;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes modal-open {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 55%;
+  }
+}
+
+#modal.closed{
+  animation-name: modal-closed;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes modal-closed {
+  from {
+    height: 55%;
+  }
+  to {
+    height: 0px;
+  }
 }
