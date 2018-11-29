@@ -39,13 +39,13 @@ function Menu()
       carteId.classList.replace('col-lg-8', 'col-lg-12')
     evenementId.className ="hidden";
     buttonId.innerText = "-";
-    modalIdstyle.width = "100%";
+    modalId.style.width = "100%";
   }
   else
   {
     carteId.classList.replace('col-lg-12', 'col-lg-8')
     evenementId.className ="col-lg-4 evenement";
     buttonId.innerText = "+";
-    modalIdstyle.width  ="auto";
+    modalId.style.width  ="66.66666667%";
   }
 }
