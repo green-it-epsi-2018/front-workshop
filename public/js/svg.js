@@ -112,9 +112,10 @@ const getListAvailableRoomsID = (date = new Date()) => {
 const setModalContent = (idRoom) => {
   const numeroSalle = +idRoom.substring(5);
   const Days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
-  const FreeSpan = (text) => `<span style='color: green;'>${text}</span>`
-  const UsedSpan = (text) => `<span style='color: red; font-weight: bold;'>${text}</span>`
+  const FreeSpan = (text) => `<span style='color: green;'>${text}</span>`;
+  const UsedSpan = (text) => `<span style='color: white; font-weight: bold;'>${text}</span>`;
 
+  [...document.querySelectorAll("td span")].forEach(node => node.parentNode.style['background-color'] = "")
   for(var y = 0; y < (20 - 8); y++){
     for(var x = 0; x < 5; x++){
       let currDate = new Date()
@@ -134,6 +135,7 @@ const setModalContent = (idRoom) => {
       modalDiv.querySelector(`tr:nth-child(${((y + 1) * 2) + 1}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, secondMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${secondEvent.Promo}`)
     }
   }
+  [...document.querySelectorAll("td span")].filter(node => node.innerHTML !== "Libre").forEach(node => node.parentNode.style['background-color'] = "red")
 }
 
 const updateMap = () => {
