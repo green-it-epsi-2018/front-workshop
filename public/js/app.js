@@ -55,6 +55,7 @@ const updateModalWidth = (isFullWidth) => {
 window.addEventListener('resize', (e) => {
   updateModalWidth()
 })
+updateModalWidth()
 
 function Menu()
 {

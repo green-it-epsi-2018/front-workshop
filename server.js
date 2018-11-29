@@ -14,17 +14,19 @@ const getInformation = () => {
   return axios.get(`${BACK_HOST}/data/information`)
   .then((response) => {
     information = response.data || []
+	return Promise.resolve(information)
   })
   .catch(() => {
     information = []
     console.log("Error, can't get information from webservice");
+	return Promise.resolve([])
   })
 }
 getInformation()
 
 setInterval(() => {
   getInformation()
-    .then(information => {
+    .then(() => {
       io.emit('updateEvents', information);
     })
 }, 300000) // 5 minutes
@@ -34,9 +36,11 @@ var events = []
 const getData = () => axios.get(`${BACK_HOST}/data/building`)
   .then((response) => {
     events = (response.data || []).map(event => ({...event, NumeroSalle: ""+event.NumeroSalle}))
+	return Promise.resolve(events)
   })
   .catch(() => {
     events = []
+	return Promise.resolve([])
     console.log("Error, can't get data from webservice");
   })
 
@@ -57,10 +61,10 @@ const svg = fs.readdirSync('svg').map(file => fs.readFileSync('svg/' + file))
 
 app.get('/', function (req, res, next) {
   if (events.length === 0) {
-    getInformation()
+    getData()
+	getInformation()
     return res.sendStatus(500)
   }
-
   return res.render('index', { svg, events, information})
 })
 
