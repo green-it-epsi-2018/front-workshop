@@ -1,3 +1,7 @@
+const modalId = document.getElementById("modal");
+const carteId =  document.getElementById("carte");
+
+
 var myIndex = 0;
 carousel();
 
@@ -24,24 +28,41 @@ setInterval(function() {
     .appendTo('#slideshow');
 },  8000);
 
+const getPageWidth = () => {
+  return document.documentElement.clientWidth
+}
+
+const updateModalWidth = (isFullWidth) => {
+  //We keep fullscreen if not in large mode
+  if(getPageWidth() < 1200 || carteId.classList.contains("col-lg-12") || isFullWidth){
+    modalId.style.width = "calc(100% - 3px)";
+  }
+  else{
+    modalId.style.width = "calc((100% * (2 / 3)) - 3px)";
+  }  
+}
+
+window.addEventListener('resize', (e) => {
+  console.log('update')
+  updateModalWidth()
+})
+
 function Menu()
 {
-  var carteId =  document.getElementById("carte");
   var evenementId =  document.getElementById("evenement");
-  var buttonId = document.getElementById("menu");
-  var modalId = document.getElementById("modal");
-  if(carteId.className == "col-lg-8 content")
+  var buttonSpanId = document.querySelector("#menu span");
+  const isFullWidth = carteId.classList.contains("col-lg-8")
+  if(isFullWidth)
   {
-      carteId.classList.replace('col-lg-8', 'col-lg-12')
-    evenementId.className ="hidden";
-    buttonId.innerText = "-";
-    modalId.style.width = "100%";
+    carteId.classList.replace('col-lg-8', 'col-lg-12')
+    buttonSpanId.classList.replace('glyphicon-minus', 'glyphicon-plus')
+    evenementId.classList.add("hidden");
   }
   else
   {
     carteId.classList.replace('col-lg-12', 'col-lg-8')
-    evenementId.className ="col-lg-4 evenement";
-    buttonId.innerText = "+";
-    modalId.style.width  ="66.66666667%";
+    evenementId.classList.remove("hidden");
+    buttonSpanId.classList.replace('glyphicon-plus', 'glyphicon-minus')
   }
+  updateModalWidth(isFullWidth)
 }

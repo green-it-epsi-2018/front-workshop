@@ -6,15 +6,19 @@ transform: rotateX(55deg) rotateZ(-26deg) translateX(45px);
 position: absolute;
 stroke-width: 3px;
 }
+#svg-container text{
+  fill: white;
+  font-weight: bold;
+}
 
 #lvl1 polygon{
-fill: rgb(1, 173, 210) !important
+fill: #4b7bec;
 }
 #lvl2 polygon{
-fill: rgb(232, 111, 24) !important
+fill: #fa8231;
 }
 #lvl3 polygon{
-fill: rgb(218, 23, 56) !important
+fill: #eb3b5a;
 }
 
 #controls{
@@ -36,7 +40,7 @@ fill: rgb(218, 23, 56) !important
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 66.66666667%;
+  width: calc((100% * (2 / 3)) - 3px);
   background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
   color: black;
   text-align: center;

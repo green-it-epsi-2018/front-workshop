@@ -19,13 +19,13 @@
       <div class="row">
       <!--Contenu de la carte-->
       <div class="col-lg-8 content" id="carte">
-       <button onclick="Menu()" style="float: right" class="btn btn-primary" id="menu"> + </button> 
          <div id="svg-container" class="svg-actif-0">
             <% svg.forEach( curr_svg => { %>
             <%- curr_svg %>
             <% }) %>
          </div>
          <div id="controls">
+            <div onclick="Menu()" id="menu"><span class="glyphicon glyphicon-minus"></span></div>
             <div onclick="controlPrec()"><span class="glyphicon glyphicon-arrow-up"></span></div>
             <div onclick="controlAcceuil()"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
             <div onclick="controlSuiv()"><span class="glyphicon glyphicon-arrow-down"></span></div>
