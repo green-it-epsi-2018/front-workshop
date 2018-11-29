@@ -66,7 +66,6 @@ function Menu()
     carteId.classList.replace('col-lg-8', 'col-lg-12')
     buttonSpanId.classList.replace('glyphicon-minus', 'glyphicon-plus')
     evenementId.classList.add("hidden");
-    modalId
   }
   else
   {

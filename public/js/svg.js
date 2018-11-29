@@ -80,7 +80,7 @@ const controlAcceuil = (isAuto) => {
     _changeTransitionState(0);
 }
 const startAuto = () => {
-  const otherControls = document.querySelectorAll('#controls > div:not([id=startauto-control])')
+  const otherControls = document.querySelectorAll('#controls > div:not([id=startauto-control]):not([id=menu])')
   if(startautoDiv.classList.contains('running')){
     startautoDiv.classList.remove('running')
     otherControls.forEach(node => node.classList.remove('disabled'))
