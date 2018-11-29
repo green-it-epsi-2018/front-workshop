@@ -82,3 +82,7 @@ fill: rgb(218, 23, 56) !important
     height: 0px;
   }
 }
+
+#startauto-control.running{
+  background-color: teal;
+}

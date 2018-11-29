@@ -1,11 +1,14 @@
 const svgContainer = document.getElementById('svg-container');
 const modalDiv = document.getElementById('modal');
 
+const startautoDiv = document.getElementById('startauto-control')
+let startAutoInterval
+
 const roomsIdList = [...document.querySelectorAll('polygon[id^=room]')].map(n => n.id)
 
 const _changeTransitionState = (state) => {
   if(modalDiv.getAttribute('class') === 'closed'){
-    svgContainer.setAttribute('class', `svg-actif-${state}`);
+    svgContainer.setAttribute('class', `svg-actif-${state}`)
   }
 }
 const _getCurrentTransitionState = () => {
@@ -70,7 +73,22 @@ const controlAcceuil = () => {
   _changeTransitionState(0);
 }
 const startAuto = () => {
-  
+  if(startautoDiv.classList.contains('running')){
+    startautoDiv.classList.remove('running')
+    clearInterval(startAutoInterval)
+  }
+  else{
+    startautoDiv.classList.add('running')
+    const maxState = document.querySelectorAll('svg').length
+    startAutoInterval = setInterval(() => {
+      if(_getCurrentTransitionState() === maxState){
+        controlAcceuil()
+      }
+      else{
+        controlPrec();
+      }
+    }, 5 * 1000)
+  }
 }
 
 const isRoomAvailable = (roomNumber, date) => {
