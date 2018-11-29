@@ -94,7 +94,9 @@ background-color: #1c0c37  !important;
 
 .evenement {
     background: -webkit-linear-gradient(top,#efeef3 0,#cfccd9 100%);
-	background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
+    background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
+    transition: all 2s linear;
+    display: block;
 }
 .mySlides , .campus
 {
@@ -132,3 +134,8 @@ max-width: 100%;
     max-width: 100%;
     width: 100%;
 }
+
+.hidden {
+    display: none;
+    opacity: 0;
+  }
