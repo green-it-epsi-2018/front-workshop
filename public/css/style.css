@@ -117,8 +117,14 @@ max-width: 100%;
     color:#1c0c37;
     font-weight: bold;
     font-family: Impact, Charcoal, sans-serif;
+    width: 100%;
 }
 #slideshow h3
 {
     text-align:  center;
+}
+#slideshow img
+{
+    max-width: 100%;
+    width: 100%;
 }
