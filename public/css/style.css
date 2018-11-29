@@ -16,6 +16,10 @@ table tr:not(:first-child){
   border-top: solid black 1px;
 }
 
+td > span{
+  font-weight: bold;
+}
+
 .container-fluid
 {
     min-height: 100% !important;
@@ -93,7 +97,6 @@ background-color: #1c0c37  !important;
 }
 
 .evenement {
-    background: -webkit-linear-gradient(top,#efeef3 0,#cfccd9 100%);
     background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
     transition: all 2s linear;
     display: block;

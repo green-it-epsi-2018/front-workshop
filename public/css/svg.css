@@ -2,7 +2,7 @@
 position: relative;
 }
 svg{
-transform: rotateX(55deg) rotateZ(-26deg) translateX(80px);
+transform: rotateX(55deg) rotateZ(-26deg) translateX(45px);
 position: absolute;
 stroke-width: 3px;
 }
@@ -37,16 +37,28 @@ fill: rgb(218, 23, 56) !important
   bottom: 0;
   left: 0;
   width: 66.66666667%;
-  background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);;
+  background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);
   color: black;
   text-align: center;
 }
 #modal > table{
   width: 100%;
   height: 100%;
+  border-collapse: separate;
+  border-spacing: 10px 0px;
+}
+
+#modal tr:first-child{
+  color: #4b6584;
+  font-weight: bold;
+  border-bottom: solid #4b6584 5px;
+}
+
+#modal > table td:first-child{
+  width: 140px;
 }
 #modal > table td{
-  width: calc(100% /  6);
+  width: calc((100% - 140px) / 5);
 }
 
 #modal.closed{

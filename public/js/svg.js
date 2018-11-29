@@ -112,8 +112,8 @@ const getListAvailableRoomsID = (date = new Date()) => {
 const setModalContent = (idRoom) => {
   const numeroSalle = +idRoom.substring(5);
   const Days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
-  const FreeSpan = (text) => `<span style='color: green;'>${text}</span>`;
-  const UsedSpan = (text) => `<span style='color: white; font-weight: bold;'>${text}</span>`;
+  const FreeSpan = (text) => `<span style='color: #20bf6b;'>${text}</span>`;
+  const UsedSpan = (text) => `<span style='color: white;'>${text}</span>`;
 
   [...document.querySelectorAll("td span")].forEach(node => node.parentNode.style['background-color'] = "")
   for(var y = 0; y < (20 - 8); y++){
@@ -135,7 +135,7 @@ const setModalContent = (idRoom) => {
       modalDiv.querySelector(`tr:nth-child(${((y + 1) * 2) + 1}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, secondMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${secondEvent.Promo}`)
     }
   }
-  [...document.querySelectorAll("td span")].filter(node => node.innerHTML !== "Libre").forEach(node => node.parentNode.style['background-color'] = "red")
+  [...document.querySelectorAll("td span")].filter(node => node.innerHTML !== "Libre").forEach(node => node.parentNode.style['background-color'] = "#eb3b5a")
 }
 
 const updateMap = () => {
@@ -143,14 +143,22 @@ const updateMap = () => {
   roomsIdList.forEach(id => {
     const isAvailable = listAvailable.includes(id)
     const node = document.getElementById(id)
-    node.style = `stroke: ${isAvailable ? "green" : "purple"}; ${!isAvailable ? "fill: grey !important" : ""}`
+    node.style = `stroke: ${isAvailable ? "#20bf6b" : "#8854d0"}; ${!isAvailable ? "fill: #778ca3 !important" : ""}`
     })
 }
 
+const updateUpdateTime = () => {
+  //affichage date aujourd'hui 
+  const currentDate = new Date()
+  const newDateUpdate = `${currentDate.getHours() < 10 ? "0" + currentDate.getHours() : currentDate.getHours()}H${currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes()}`
+  document.getElementById('dateId').innerHTML = newDateUpdate
+}
 updateMap()
+updateUpdateTime()
 setInterval(updateMap, 5 * 60 * 1000)
 
 socket.on('updateEvents', function(newEvents){
   events = newEvents
+  updateUpdateTime()
   updateMap()
 })

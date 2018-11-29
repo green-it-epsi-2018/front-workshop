@@ -5,22 +5,21 @@ const io = require('socket.io')(http)
 const fs = require('fs')
 const axios = require('axios')
 var date = new Date()
-var str = " à "
-var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-var dateUpdate = date.toLocaleDateString('fr-FR', options).concat(str, date.toLocaleTimeString())
 
-const BACK_HOST = "http://localhost:3000"
+const BACK_HOST = process.env.BACK_HOST || "http://localhost:3000"
+const UPDATE_EVENTS_API_TIMEOUT = +process.env.UPDATE_EVENTS_API_TIMEOUT || (5 * 60 * 1000) //5 Minutes
 
 var information = []
-const getInformation = () => axios.get(`${BACK_HOST}/data/information`)
+const getInformation = () => {
+  return axios.get(`${BACK_HOST}/data/information`)
   .then((response) => {
-    information = response.data
+    information = response.data || []
   })
   .catch(() => {
     information = []
     console.log("Error, can't get information from webservice");
   })
-
+}
 getInformation()
 
 setInterval(() => {
@@ -45,7 +44,7 @@ getData()
 
 setInterval(() => {
   getData()
-    .then(events => {
+    .then(() => {
       io.emit('updateEvents', events);
     })
 }, 1 * 60 * 60 * 1000) // 30 minutes
@@ -58,14 +57,11 @@ const svg = fs.readdirSync('svg').map(file => fs.readFileSync('svg/' + file))
 
 app.get('/', function (req, res, next) {
   if (events.length === 0) {
+    getInformation()
     return res.sendStatus(500)
   }
 
-  return res.render('index', { svg, events, information , dateUpdate})
-})
-
-io.on('updateEvents', function (socket) {
-  //  console.log('a user connected')
+  return res.render('index', { svg, events, information})
 })
 
 http.listen(8080, () => console.log("Serveur launched at port 8080"))

@@ -37,7 +37,7 @@
             <hr class="hr-success" />
             <hr class="hr-warning" />
             <h1>
-               <p style="color:#1c0c37  !important; padding: 1px;">La dernière mise à jour : <%= dateUpdate %></p>
+               <p style="color:#1c0c37  !important; padding: 1px;">Dernière mise a jour : <span id="dateId"></span></p>
             </h1>
             <hr class="hr-primary">
             <hr class="hr-danger" />
@@ -127,7 +127,7 @@
             </tbody>
          </table>
       </div>
-      <script>const events = <%- JSON.stringify(events) %></script>
+      <script>let events = <%- JSON.stringify(events) %></script>
       <!--Script and generated style-->
       <script src="/socket.io/socket.io.js"></script>
       <script>const socket = io();</script>
@@ -184,7 +184,7 @@
          display: <%= isCurrentSelected ? "initial" : "none" %>;
          top: <%= nextTop %> ;
          opacity: <%= isCurrentSelected ? "1" : "0" %>;
-         transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg) translateX(35px);" : "rotateX(55deg) rotateZ(-26deg); translateX(80px)" %>;
+         transform: <%= isCurrentSelected ? "rotateX(0deg) rotateZ(0deg) translateX(35px);" : "rotateX(55deg) rotateZ(-26deg); translateX(45px)" %>;
          }
          }
          <% }) %>
