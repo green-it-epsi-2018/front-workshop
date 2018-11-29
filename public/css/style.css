@@ -12,6 +12,10 @@ body{
   overflow: hidden;
 }
 
+table tr:not(:first-child){
+  border-top: solid black 1px;
+}
+
 .container-fluid
 {
     min-height: 100% !important;

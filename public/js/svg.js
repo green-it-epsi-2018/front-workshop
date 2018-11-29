@@ -113,7 +113,7 @@ const setModalContent = (idRoom) => {
   const numeroSalle = +idRoom.substring(5);
   const Days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
   const FreeSpan = (text) => `<span style='color: green;'>${text}</span>`
-  const UsedSpan = (text) => `<span style='color: grey; font-weight: bold;'>${text}</span>`
+  const UsedSpan = (text) => `<span style='color: red; font-weight: bold;'>${text}</span>`
 
   for(var y = 0; y < (20 - 8); y++){
     for(var x = 0; x < 5; x++){
@@ -122,7 +122,7 @@ const setModalContent = (idRoom) => {
 
       if(y === 0){
         const lbl = modalDiv.querySelector(`tr:nth-child(1) td:nth-child(${2 + x})`)
-        lbl.innerHTML = `${Days[x]} ${currDate.getDate()}/${currDate.getMonth()}`;
+        lbl.innerHTML = `${Days[x]} ${currDate.getDate()}/${currDate.getMonth() + 1}`;
       }
 
       const firstMiddleDate = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), y + 8, 15, 00)
@@ -130,8 +130,8 @@ const setModalContent = (idRoom) => {
 
       const firstEvent = getEventOccupation(numeroSalle, firstMiddleDate);
       const secondEvent = getEventOccupation(numeroSalle, secondMiddleDate)
-      modalDiv.querySelector(`tr:nth-child(${(y + 1) * 2}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, firstMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${firstEvent.Promo} : ${firstEvent.Matiere}`)
-      modalDiv.querySelector(`tr:nth-child(${((y + 1) * 2) + 1}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, secondMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${secondEvent.Promo} : ${secondEvent.Matiere}`)
+      modalDiv.querySelector(`tr:nth-child(${(y + 1) * 2}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, firstMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${firstEvent.Promo}`)
+      modalDiv.querySelector(`tr:nth-child(${((y + 1) * 2) + 1}) td:nth-child(${2 + x})`).innerHTML = isRoomAvailable(numeroSalle, secondMiddleDate) ? FreeSpan('Libre') : UsedSpan(`${secondEvent.Promo}`)
     }
   }
 }

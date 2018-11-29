@@ -37,8 +37,8 @@ fill: rgb(218, 23, 56) !important
   bottom: 0;
   left: 0;
   width: calc(100% * (2/3));
-  background-color: #1c0c37;
-  color: white;
+  background: linear-gradient(to bottom,#efeef3 0,#cfccd9 100%);;
+  color: black;
   text-align: center;
 }
 #modal > table{
@@ -64,7 +64,7 @@ fill: rgb(218, 23, 56) !important
     height: 0px;
   }
   to {
-    height: 55%;
+    height: 60%;
   }
 }
 
@@ -76,7 +76,7 @@ fill: rgb(218, 23, 56) !important
 
 @keyframes modal-closed {
   from {
-    height: 55%;
+    height: 60%;
   }
   to {
     height: 0px;
