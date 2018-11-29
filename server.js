@@ -83,7 +83,13 @@ const getData = () => axios.get(`${BACK_HOST}/data/building`)
   })
 
 getData()
-setInterval(getData, 2 * 3600 * 1000) // 2 Hours
+
+setInterval(() => {
+  getData()
+  .then(events => {
+    io.emit('updateEvents', events);
+  })
+}, 1 * 60 * 60 * 1000) // 30 minutes
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -99,7 +105,7 @@ app.get('/', function(req, res, next){
   return res.render('index', {svg, events})
 })
 
-io.on('connection', function(socket){
+io.on('updateEvents', function(socket){
 //  console.log('a user connected')
 })
 

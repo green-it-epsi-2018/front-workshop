@@ -69,6 +69,9 @@ const controlSuiv = () => {  const currentState = _getCurrentTransitionState();
 const controlAcceuil = () => {
   _changeTransitionState(0);
 }
+const startAuto = () => {
+  
+}
 
 const isRoomAvailable = (roomNumber, date) => {
   const currentTimestamp = date.getTime();
@@ -111,7 +114,19 @@ const setModalContent = (idRoom) => {
   }
 }
 
-(() => {
+const updateMap = () => {
   const listAvailable = getListAvailableRoomsID();
-  roomsIdList.forEach(id => document.getElementById(id).style.stroke = listAvailable.includes(id) ? "green" : "purple")
-})()
+  roomsIdList.forEach(id => {
+    const isAvailable = listAvailable.includes(id)
+    const node = document.getElementById(id)
+    node.style = `stroke: ${isAvailable ? "green" : "purple"}; ${!isAvailable ? "fill: grey !important" : ""}`
+    })
+}
+
+updateMap()
+setInterval(updateMap, 5 * 60 * 1000)
+
+socket.on('updateEvents', function(newEvents){
+  events = newEvents
+  updateMap()
+})
