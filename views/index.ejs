@@ -128,7 +128,7 @@
             </tbody>
          </table>
       </div>
-      <script>let events = <%- JSON.stringify(events) %></script>
+      <script>let events = <%- JSON.stringify(events) %> || []</script>
       <!--Script and generated style-->
       <script src="/socket.io/socket.io.js"></script>
       <script>const socket = io();</script>
