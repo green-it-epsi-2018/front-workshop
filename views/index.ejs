@@ -18,11 +18,6 @@
       <div class="row">
       <!--Contenu de la carte-->
       <div class="col-lg-8 content">
-         <div class="alert alert-info" role="alert">
-            <div class="text-center">
-               <h3><strong id="dateId" class="date"></strong></h3>
-            </div>
-         </div>
          <div id="svg-container" class="svg-actif-0">
             <% svg.forEach( curr_svg => { %>
             <%- curr_svg %>
@@ -60,7 +55,7 @@
             <hr class="hr-success" />
             <hr class="hr-warning" />
             <h1>
-               <p style="color:#6D214F  !important;"><span class="glyphicon glyphicon-info-sign"></span> Informations </p>
+               <p><span class="glyphicon glyphicon-info-sign"></span> Informations </p>
             </h1>
          </div>
          <hr class="hr-primary">
@@ -69,22 +64,22 @@
          <hr class="hr-warning" />
          <div class="information">
             <div id="slideshow">
-               <div class="alert alert-info" role="alert">
-                  <h3> <span class="glyphicon glyphicon-calendar"> CAMPUS HEP NANTES  </span></h3>
-                  <img src="img/campus.jpg">
+               <div>
+                  <h3> <span class="glyphicon glyphicon-calendar"></span> CAMPUS HEP NANTES  </h3>
+                  <img src="img/campus.jpg"  class="info">
                </div>
-               <div class="alert alert-info" role="alert">
-                  <h3> <span class="glyphicon glyphicon-calendar"> Le prochaine workshop sera le 04/02/2019 </span></h3>
-                  <img src="img/wk.jpg">
+               <div>
+                  <h3> <span class="glyphicon glyphicon-calendar"> </span> Le prochaine workshop sera le 04/02/2019 </h3>
+                  <img src="img/wk.jpg"  class="info">
                </div>
-               <div class="alert alert-info" role="alert">
-                  <h3><span class="glyphicon glyphicon-info-sign"> Il y a une réunion groupe dans la salle 200 à 10h</span> </h3>
-                  <img src="img/wk2.jpg">
+               <div>
+                  <h3><span class="glyphicon glyphicon-info-sign"></span> Il y a une réunion groupe dans la salle 200 à 10h </h3>
+                  <img src="img/wk2.jpg" class="info">
                </div>
-               <div class="alert alert-info" role="alert">
-                  <span class="glyphicon glyphicon-info-sign">
+               <div>
+                 <h1> <span class="glyphicon glyphicon-info-sign">  </span>
                   Un workshop est un mot anglais qui désigne un atelier axé sur un thème de travail au sein d'un congrès ou d'un salon professionnel. La présence du suffixe -shop induit en erreur et peut faire penser à un commerce. 
-                  </span>
+                 </h1>
                </div>
             </div>
          </div>

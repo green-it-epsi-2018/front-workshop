@@ -71,7 +71,6 @@ hr {
   vertical-align: bottom;
   float: none;
   width: 100%;
-  /*background-color: white;*/
   }
   .vbottom p , .evenement p
   {
@@ -102,4 +101,24 @@ background-color: #1c0c37  !important;
 {
     width: 100%;
     background-color: white;
+}
+
+h1 p ,  h3 span , h1 span
+{
+    color:#1c0c37;
+    font-weight: bold;
+}
+.alert-info
+{
+max-width: 100%;
+}
+#slideshow
+{
+    color:#1c0c37;
+    font-weight: bold;
+    font-family: Impact, Charcoal, sans-serif;
+}
+#slideshow h3
+{
+    text-align:  center;
 }
