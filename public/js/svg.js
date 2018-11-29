@@ -116,7 +116,7 @@ const getListAvailableRoomsID = (date = new Date()) => {
 }
 
 const setModalContent = (idRoom) => {
-  const numeroSalle = +idRoom.substring(5);
+  const numeroSalle = idRoom.substring(5);
 
   const roomSpan = document.createElement('div')
   roomSpan.innerText = `Salle  n° ${numeroSalle}`
@@ -169,7 +169,7 @@ updateUpdateTime()
 setInterval(updateMap, 5 * 60 * 1000)
 
 socket.on('updateEvents', function(newEvents){
-  events = newEvents
+  events = newEvents || []
   updateUpdateTime()
   updateMap()
 })

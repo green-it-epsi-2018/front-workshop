@@ -33,7 +33,7 @@ setInterval(() => {
 var events = []
 const getData = () => axios.get(`${BACK_HOST}/data/building`)
   .then((response) => {
-    events = response.data || []
+    events = (response.data || []).map(event => ({...event, NumeroSalle: ""+event.NumeroSalle}))
   })
   .catch(() => {
     events = []
