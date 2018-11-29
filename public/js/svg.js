@@ -49,45 +49,49 @@ document.querySelectorAll('polygon[id^=room]').forEach(p => {
   
   p.addEventListener('click', (e) => {
     const currentState = _getCurrentTransitionState();
-    if(currentState != 0 && modalDiv.getAttribute('class') === 'closed' && e.target.id.startsWith(`room-${currentState}`)){
+    if(currentState != 0 && modalDiv.getAttribute('class') === 'closed' && e.target.id.startsWith(`room-${currentState}`) && !startautoDiv.classList.contains('running')){
       modalDiv.setAttribute('class', 'opened');
       setModalContent(e.target.id);
       e.stopPropagation();
     }
   })
 })
-const controlPrec = () => {
+const controlPrec = (isAuto) => {
   const currentState = _getCurrentTransitionState();
   const maxState = document.querySelectorAll('svg').length
-  if(currentState < maxState){
+  if(currentState < maxState && (isAuto || !startautoDiv.classList.contains('running'))){
     _changeTransitionState(currentState + 1)
   }
 }
-const controlSuiv = () => {  const currentState = _getCurrentTransitionState();
-  if(currentState > 1){
+const controlSuiv = (isAuto) => {  const currentState = _getCurrentTransitionState();
+  if(currentState > 1 && (isAuto || !startautoDiv.classList.contains('running'))){
     _changeTransitionState(currentState - 1)
   }
 
 }
-const controlAcceuil = () => {
-  _changeTransitionState(0);
+const controlAcceuil = (isAuto) => {
+  if(isAuto || !startautoDiv.classList.contains('running'))
+    _changeTransitionState(0);
 }
 const startAuto = () => {
+  const otherControls = document.querySelectorAll('#controls > div:not([id=startauto-control])')
   if(startautoDiv.classList.contains('running')){
     startautoDiv.classList.remove('running')
+    otherControls.forEach(node => node.classList.remove('disabled'))
     clearInterval(startAutoInterval)
   }
   else{
     startautoDiv.classList.add('running')
+    otherControls.forEach(node => node.classList.add('disabled'))
     const maxState = document.querySelectorAll('svg').length
     startAutoInterval = setInterval(() => {
       if(_getCurrentTransitionState() === maxState){
-        controlAcceuil()
+        controlAcceuil(true)
       }
       else{
-        controlPrec();
+        controlPrec(true);
       }
-    }, 5 * 1000)
+    }, 4 * 1000)
   }
 }
 

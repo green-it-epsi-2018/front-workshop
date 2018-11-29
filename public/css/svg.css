@@ -83,6 +83,10 @@ fill: rgb(218, 23, 56) !important
   }
 }
 
+#controls > div:not([id=startauto-control]).disabled{
+  background-color: grey;
+}
+
 #startauto-control.running{
   background-color: teal;
 }
