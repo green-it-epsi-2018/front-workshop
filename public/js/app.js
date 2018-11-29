@@ -1,5 +1,6 @@
 const modalId = document.getElementById("modal");
 const carteId =  document.getElementById("carte");
+const controlsId =  document.getElementById("controls");
 
 
 var myIndex = 0;
@@ -34,16 +35,24 @@ const getPageWidth = () => {
 
 const updateModalWidth = (isFullWidth) => {
   //We keep fullscreen if not in large mode
-  if(getPageWidth() < 1200 || carteId.classList.contains("col-lg-12") || isFullWidth){
+  const pageWidth = getPageWidth()
+
+  if(pageWidth < 1200 || carteId.classList.contains("col-lg-12") || isFullWidth){
     modalId.style.width = "calc(100% - 3px)";
   }
   else{
     modalId.style.width = "calc((100% * (2 / 3)) - 3px)";
-  }  
+  }
+
+  if(pageWidth < 600){
+    controlsId.style.top = "calc(100% - 310px)"
+  }
+  else{
+    controlsId.style.top = "30px"
+  }
 }
 
 window.addEventListener('resize', (e) => {
-  console.log('update')
   updateModalWidth()
 })
 
@@ -57,6 +66,7 @@ function Menu()
     carteId.classList.replace('col-lg-8', 'col-lg-12')
     buttonSpanId.classList.replace('glyphicon-minus', 'glyphicon-plus')
     evenementId.classList.add("hidden");
+    modalId
   }
   else
   {

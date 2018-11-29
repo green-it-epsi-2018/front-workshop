@@ -1,5 +1,6 @@
 const svgContainer = document.getElementById('svg-container');
 const modalDiv = document.getElementById('modal');
+const lvlNumberDiv = document.getElementById('lvlNumber')
 
 const startautoDiv = document.getElementById('startauto-control')
 let startAutoInterval
@@ -8,6 +9,7 @@ const roomsIdList = [...document.querySelectorAll('polygon[id^=room]')].map(n =>
 
 const _changeTransitionState = (state) => {
   if(modalDiv.getAttribute('class') === 'closed'){
+    lvlNumber.querySelector('span').innerHTML = state
     svgContainer.setAttribute('class', `svg-actif-${state}`)
   }
 }
@@ -17,6 +19,9 @@ const _getCurrentTransitionState = () => {
 
 document.addEventListener('click', (e) => {
   if(modalDiv.getAttribute('class') === 'opened' && e.target !== modalDiv && !modalDiv.contains(e.target)){
+    
+    //remove the room number
+    lvlNumberDiv.removeChild(lvlNumberDiv.querySelector('div'))
     modalDiv.setAttribute('class', 'closed');
   }
 })
@@ -112,6 +117,11 @@ const getListAvailableRoomsID = (date = new Date()) => {
 
 const setModalContent = (idRoom) => {
   const numeroSalle = +idRoom.substring(5);
+
+  const roomSpan = document.createElement('div')
+  roomSpan.innerText = `Salle  n° ${numeroSalle}`
+  lvlNumberDiv.appendChild(roomSpan)
+
   const Days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
   const FreeSpan = (text) => `<span style='color: #20bf6b;'>${text}</span>`;
   const UsedSpan = (text) => `<span style='color: white;'>${text}</span>`;

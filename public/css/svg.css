@@ -5,6 +5,7 @@ svg{
 transform: rotateX(55deg) rotateZ(-26deg) translateX(45px);
 position: absolute;
 stroke-width: 3px;
+max-width: 1600px;
 }
 #svg-container text{
   fill: white;
@@ -21,9 +22,20 @@ fill: #fa8231;
 fill: #eb3b5a;
 }
 
+#lvlNumber{
+  border: solid black 1px;
+  padding: 5px;
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  font-weight: bold;
+  color: #4b6584;
+  font-size: 22px;
+}
+
 #controls{
   position: absolute;
-  top: 100px;
+  top: 30px;
   right: 5px;
   width: 30px;
   height: 30px;
@@ -45,6 +57,7 @@ fill: #eb3b5a;
   color: black;
   text-align: center;
 }
+
 #modal > table{
   width: 100%;
   height: 100%;

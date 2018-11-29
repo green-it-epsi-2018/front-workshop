@@ -33,7 +33,7 @@ setInterval(() => {
 var events = []
 const getData = () => axios.get(`${BACK_HOST}/data/building`)
   .then((response) => {
-    events = response.data
+    events = response.data || []
   })
   .catch(() => {
     events = []
@@ -45,7 +45,7 @@ getData()
 setInterval(() => {
   getData()
     .then(() => {
-      io.emit('updateEvents', events);
+      io.emit('updateEvents', events || []);
     })
 }, 1 * 60 * 60 * 1000) // 30 minutes
 
