@@ -30,6 +30,7 @@ window.addEventListener('keydown', (event) => {
   switch(event.key){
     case "Escape":
     if(modalDiv.getAttribute('class') === 'opened'){
+      lvlNumberDiv.removeChild(lvlNumberDiv.querySelector('div'))
       modalDiv.setAttribute('class', 'closed')
     }
     break;

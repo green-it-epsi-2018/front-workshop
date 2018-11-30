@@ -27,7 +27,7 @@ getInformation()
 setInterval(() => {
   getInformation()
     .then(() => {
-      io.emit('updateEvents', information);
+      io.emit('updateInformation', information);
     })
 }, 300000) // 5 minutes
 
