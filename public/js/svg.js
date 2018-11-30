@@ -112,7 +112,7 @@ const getEventOccupation = (roomNumber, date) => {
 }
 
 const getListAvailableRoomsID = (date = new Date()) => {
-  return roomsIdList.filter((roomId) => isRoomAvailable(+roomId.substring(5), date));
+  return roomsIdList.filter((roomId) => isRoomAvailable(roomId.substring(5), date));
 }
 
 const setModalContent = (idRoom) => {
